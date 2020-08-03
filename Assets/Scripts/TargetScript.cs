@@ -8,14 +8,10 @@ public class TargetScript : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
 
-    [SerializeField] float _movementForceMultiplier;
+    [SerializeField] float _movementSpeed;
 
-    [SerializeField] TrackWaypoint _nextWaypoint;
-    internal TrackWaypoint NextWaypoint { get => _nextWaypoint; set => SetNextWaypoint(value); }
-    private void SetNextWaypoint(TrackWaypoint value)
-    {
-        _nextWaypoint = value;
-    }
+    [SerializeField] int _nextWaypointIndex;
+    [SerializeField] TrackWaypoint NextWaypoint => TrackManager.Instance._trackWaypointList[_nextWaypointIndex];
 
     private void Awake()
     {
@@ -37,19 +33,32 @@ public class TargetScript : MonoBehaviour
         TrackManager.TargetRemovedAction?.Invoke(this);
     }
 
+    float _distanceFromNextWaypoint;
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void FixedUpdate()
-    {
-        _rigidbody.AddForce((NextWaypoint.transform.position - transform.position) * _movementForceMultiplier);
+        _distanceFromNextWaypoint = Vector2.Distance(transform.position, NextWaypoint.transform.position);
+
+        if (_distanceFromNextWaypoint < 0.1f)
+        {
+            ReachedNextWaypoint();
+        }
     }
 
-    internal void Initialise(Vector3 startingPosition, TrackWaypoint nextWaypoint)
+    private void ReachedNextWaypoint()
+    {
+        _nextWaypointIndex = (_nextWaypointIndex + 1) % TrackManager.Instance._trackWaypointList.Count;
+    }
+
+    private void FixedUpdate()
+    {
+        var newPosition = Vector2.MoveTowards(transform.position, NextWaypoint.transform.position, _movementSpeed);
+        _rigidbody.MovePosition(newPosition);
+    }
+
+    internal void Initialise(Vector3 startingPosition, int nextWaypointIndex)
     {
         transform.position = startingPosition;
-        NextWaypoint = nextWaypoint;
+        _nextWaypointIndex = nextWaypointIndex;
     }
 }

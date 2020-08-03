@@ -8,7 +8,7 @@ public class TrackManager : MonoBehaviour
 {
     [SerializeField] bool _hasChanged;
 
-    [SerializeField] List<TrackWaypoint> _trackWaypointList;
+    [SerializeField] internal List<TrackWaypoint> _trackWaypointList;
 
     [SerializeField] List<TargetScript> _targetList;
 
@@ -18,6 +18,12 @@ public class TrackManager : MonoBehaviour
     public static Action<TargetScript> TargetAddedAction;
     public static Action<TargetScript> TargetRemovedAction;
 
+    public static TrackManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +47,11 @@ public class TrackManager : MonoBehaviour
 
     void WaypointAdded(TrackWaypoint waypoint)
     {
-        _trackWaypointList.Add(waypoint);
+        //_trackWaypointList.Add(waypoint);
     }
     void WaypointRemoved(TrackWaypoint waypoint)
     {
-        _trackWaypointList.Remove(waypoint);
+        //_trackWaypointList.Remove(waypoint);
     }
 
     void TargetAdded(TargetScript target)
@@ -56,9 +62,10 @@ public class TrackManager : MonoBehaviour
         {
             int randomWaypointIndex = UnityEngine.Random.Range(0, _trackWaypointList.Count);
             var randomWaypoint = _trackWaypointList[randomWaypointIndex];
-            var nextWaypoint = _trackWaypointList[randomWaypointIndex + 1 % _trackWaypointList.Count];
+            int nextWaypointIndex = (randomWaypointIndex + 1) % _trackWaypointList.Count;
+            var nextWaypoint = _trackWaypointList[nextWaypointIndex];
 
-            target.Initialise(randomWaypoint.transform.position, nextWaypoint);
+            target.Initialise(randomWaypoint.transform.position, nextWaypointIndex);
         }
     }
     void TargetRemoved(TargetScript target)
