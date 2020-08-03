@@ -349,11 +349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -1.5072374
+      value: -4.5472374
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 2.7656777
+      value: 0.97567767
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].z
@@ -2278,11 +2278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -4.5472374
+      value: -2.6672373
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 0.97567767
+      value: 1.9356776
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].z
@@ -3937,6 +3937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b336571097c1b1840b3c376d0ff7427a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementForceMultiplier: 5
+  _nextWaypoint: {fileID: 0}
 --- !u!1001 &2015291299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4218,7 +4220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasChanged: 0
   _trackWaypointList:
-  - {fileID: 1359322040}
   - {fileID: 743624047}
   - {fileID: 2022522683}
   - {fileID: 299725511}
@@ -4245,6 +4246,7 @@ MonoBehaviour:
   - {fileID: 735066397}
   - {fileID: 2106509322}
   - {fileID: 14248350}
+  - {fileID: 1359322040}
   - {fileID: 781942367}
   - {fileID: 1829136932}
   - {fileID: 884451800}
@@ -4261,7 +4263,6 @@ Transform:
   m_LocalPosition: {x: -4.5472374, y: 0.97567767, z: -5.5968623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1359322039}
   - {fileID: 743624046}
   - {fileID: 2022522682}
   - {fileID: 299725510}
@@ -4288,6 +4289,7 @@ Transform:
   - {fileID: 735066396}
   - {fileID: 2106509321}
   - {fileID: 14248349}
+  - {fileID: 1359322039}
   - {fileID: 781942366}
   - {fileID: 1829136931}
   - {fileID: 884451799}
@@ -4396,11 +4398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -2.6672373
+      value: -1.5072374
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 1.9356776
+      value: 2.7656777
       objectReference: {fileID: 0}
     - target: {fileID: 4589889450420441777, guid: f73620061b813a54cba7eb91ed63893e, type: 3}
       propertyPath: m_Positions.Array.data[1].z

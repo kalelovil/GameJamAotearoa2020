@@ -54,8 +54,11 @@ public class TrackManager : MonoBehaviour
 
         if (_trackWaypointList.Count > 0)
         {
-            var randomWaypoint = _trackWaypointList[UnityEngine.Random.Range(0, _trackWaypointList.Count)];
-            target.transform.position = randomWaypoint.transform.position;
+            int randomWaypointIndex = UnityEngine.Random.Range(0, _trackWaypointList.Count);
+            var randomWaypoint = _trackWaypointList[randomWaypointIndex];
+            var nextWaypoint = _trackWaypointList[randomWaypointIndex + 1 % _trackWaypointList.Count];
+
+            target.Initialise(randomWaypoint.transform.position, nextWaypoint);
         }
     }
     void TargetRemoved(TargetScript target)
